@@ -1,15 +1,19 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function () {
-    const currentDayElement = document.querySelector('[data-testid="currentDayOfTheWeek"]');
-    const currentUTCTimeElement = document.querySelector('[data-testid="currentUTCTime"]');
+function updateClock() {
+    const dayElement = document.getElementById('day');
+    const UTCtimeElement = document.getElementById('time')
+
+    const now = new Date();
+    console.log(now)
+   const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const currentDate = new Date();
-    const currentDayOfWeek = daysOfWeek[currentDate.getUTCDay()];
+    const dayOfweek = daysOfWeek[now.getUTCDay()];
 
-    // Get current UTC time
-    const utcTime = currentDate.toISOString().split('T')[1].substring(0, 8); // Extract HH:mm:ss from UTC timestamp
+   const ct = Date.now()
 
-    currentDayElement.textContent = `Current Day: ${currentDayOfWeek}`;
-    currentUTCTimeElement.textContent = `Current UTC Time: ${utcTime}`;
-});
+    dayElement.textContent = `Day: ${dayOfweek}`;
+    UTCtimeElement.textContent = `Time: ${ct}`;
+
+    setInterval(updateClock, 1000);
+}
+
+updateClock()
